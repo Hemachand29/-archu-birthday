@@ -9,13 +9,11 @@
 <style>
 :root{
   --bg:#070709;
-  --bg2:#0e0b0d;
   --ink:#f8f3ef;
   --muted:#b8aca5;
   --rose:#e9a0a9;
   --rose2:#f5c6cb;
   --gold:#d8b48a;
-  --line:rgba(255,255,255,.10);
 }
 *{
   box-sizing:border-box;
@@ -31,8 +29,7 @@ body{
   font-family:Georgia,"Times New Roman",serif;
   overflow-x:hidden;
 }
-/* ---------- BACKGROUND ---------- */
-body::before{
+body:before{
   content:"";
   position:fixed;
   inset:0;
@@ -59,18 +56,16 @@ body::before{
   z-index:-3;
   pointer-events:none;
 }
-/* ---------- PROGRESS ---------- */
 .progress{
   position:fixed;
   top:0;
   left:0;
   height:2px;
-  width:0%;
+  width:0;
   background:var(--rose);
   z-index:90;
   box-shadow:0 0 15px rgba(233,160,169,.8);
 }
-/* ---------- GENERAL ---------- */
 section{
   position:relative;
   min-height:100svh;
@@ -122,7 +117,7 @@ p{
   opacity:1;
   transform:none;
 }
-/* ---------- SECRET OPENING ---------- */
+/* SECRET OPENING */
 #gate{
   position:fixed;
   inset:0;
@@ -176,7 +171,7 @@ p{
   transform:translateY(-3px);
   box-shadow:0 15px 45px rgba(233,160,169,.12);
 }
-/* ---------- MUSIC ---------- */
+/* MUSIC */
 .music{
   position:fixed;
   right:18px;
@@ -192,7 +187,7 @@ p{
   cursor:pointer;
   font-size:15px;
 }
-/* ---------- HERO ---------- */
+/* HERO */
 .hero{
   text-align:center;
 }
@@ -239,7 +234,7 @@ p{
     transform:translateX(-50%) translateY(6px);
   }
 }
-/* ---------- STORY ---------- */
+/* STORY */
 .story{
   grid-template-columns:1fr 1fr;
   gap:7vw;
@@ -270,7 +265,7 @@ p{
     height:62svh;
   }
 }
-/* ---------- QUOTE ---------- */
+/* QUOTE */
 .quote{
   text-align:center;
   background:
@@ -286,7 +281,7 @@ p{
   margin:30px auto 0;
   font-size:17px;
 }
-/* ---------- THREE THINGS ---------- */
+/* THREE THINGS */
 .loves{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -296,12 +291,13 @@ p{
 .love{
   min-height:270px;
   padding:35px 28px;
-  border:1px solid var(--line);
-  background:linear-gradient(
-    145deg,
-    rgba(255,255,255,.045),
-    rgba(255,255,255,.008)
-  );
+  border:1px solid rgba(255,255,255,.1);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.045),
+      rgba(255,255,255,.008)
+    );
   transition:.5s ease;
 }
 .love:hover{
@@ -328,7 +324,7 @@ p{
     grid-template-columns:1fr;
   }
 }
-/* ---------- GALLERY ---------- */
+/* GALLERY */
 .gallery{
   display:grid;
   grid-template-columns:repeat(12,1fr);
@@ -340,16 +336,17 @@ p{
   position:relative;
   background:#111;
 }
-.photo-card::after{
+.photo-card:after{
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
-  background:linear-gradient(
-    180deg,
-    transparent 55%,
-    rgba(0,0,0,.35)
-  );
+  background:
+    linear-gradient(
+      180deg,
+      transparent 55%,
+      rgba(0,0,0,.35)
+    );
 }
 .photo-card img{
   width:100%;
@@ -363,15 +360,30 @@ p{
   transform:scale(1.07);
   filter:saturate(1);
 }
-.photo-1{grid-column:span 7;height:560px}
-.photo-2{grid-column:span 5;height:560px}
-.photo-3{grid-column:span 5;height:460px}
-.photo-4{grid-column:span 7;height:460px}
-.photo-5,.photo-6,.photo-7{
+.photo-1{
+  grid-column:span 7;
+  height:560px;
+}
+.photo-2{
+  grid-column:span 5;
+  height:560px;
+}
+.photo-3{
+  grid-column:span 5;
+  height:460px;
+}
+.photo-4{
+  grid-column:span 7;
+  height:460px;
+}
+.photo-5,
+.photo-6,
+.photo-7{
   grid-column:span 4;
   height:360px;
 }
-.photo-8,.photo-9{
+.photo-8,
+.photo-9{
   grid-column:span 6;
   height:470px;
 }
@@ -391,7 +403,7 @@ p{
     height:430px;
   }
 }
-/* ---------- LETTER ---------- */
+/* LETTER */
 .letter{
   max-width:760px;
   margin:auto;
@@ -406,7 +418,7 @@ p{
   color:var(--rose);
   font-style:italic;
 }
-/* ---------- FINAL REVEAL ---------- */
+/* FINAL */
 .final{
   min-height:110svh;
   text-align:center;
@@ -453,7 +465,7 @@ p{
   letter-spacing:.3em;
   color:#847974;
 }
-/* ---------- FLOATING HEARTS ---------- */
+/* FLOATING HEARTS */
 .heart{
   position:fixed;
   bottom:-30px;
@@ -464,18 +476,24 @@ p{
 }
 @keyframes floatHeart{
   0%{
-    transform:translateY(0) scale(.6) rotate(0);
+    transform:
+      translateY(0)
+      scale(.6)
+      rotate(0);
     opacity:0;
   }
   10%{
     opacity:.8;
   }
   100%{
-    transform:translateY(-110vh) scale(1.5) rotate(30deg);
+    transform:
+      translateY(-110vh)
+      scale(1.5)
+      rotate(30deg);
     opacity:0;
   }
 }
-/* ---------- SIDE NOTE ---------- */
+/* SIDE NOTE */
 .side-note{
   position:fixed;
   left:18px;
@@ -492,7 +510,7 @@ p{
     display:none;
   }
 }
-/* ---------- CUSTOM CURSOR ---------- */
+/* CURSOR */
 .cursor{
   position:fixed;
   width:7px;
@@ -516,7 +534,7 @@ p{
 <canvas id="stars"></canvas>
 <div class="progress" id="progress"></div>
 <div class="side-note">
-  A story made for Archu · Chandu
+A story made for Archu · Chandu
 </div>
 <!-- SECRET OPENING -->
 <div id="gate">
@@ -537,8 +555,12 @@ p{
     </button>
   </div>
 </div>
-<!-- MUSIC -->
-<button class="music" id="music" aria-label="Ambient sound">
+<!-- MUSIC BUTTON -->
+<button
+  class="music"
+  id="music"
+  aria-label="Play background music"
+>
   ♪
 </button>
 <!-- HERO -->
@@ -557,7 +579,8 @@ p{
     <p style="max-width:430px;margin:auto">
       Some people arrive in your life quietly…
       <br>
-      and somehow become one of the most beautiful parts of it.
+      and somehow become one of the most beautiful
+      parts of it.
     </p>
   </div>
   <div class="scroll-hint">
@@ -575,7 +598,8 @@ p{
       So many little moments.
     </h2>
     <p style="margin-top:30px">
-      A year can be measured in days, months and dates.
+      A year can be measured in days,
+      months and dates.
       But the good ones are measured differently —
       in conversations that lasted too long,
       laughs that came out of nowhere,
@@ -676,31 +700,58 @@ p{
     </div>
     <div class="gallery">
       <div class="photo-card photo-1 reveal">
-        <img src="assets/photo-2.jpg" alt="Memory">
+        <img
+          src="assets/photo-2.jpg"
+          alt="Memory"
+        >
       </div>
       <div class="photo-card photo-2 reveal">
-        <img src="assets/photo-3.jpg" alt="Memory">
+        <img
+          src="assets/photo-3.jpg"
+          alt="Memory"
+        >
       </div>
       <div class="photo-card photo-3 reveal">
-        <img src="assets/photo-4.jpg" alt="Memory">
+        <img
+          src="assets/photo-4.jpg"
+          alt="Memory"
+        >
       </div>
       <div class="photo-card photo-4 reveal">
-        <img src="assets/photo-5.jpg" alt="Memory">
+        <img
+          src="assets/photo-5.jpg"
+          alt="Memory"
+        >
       </div>
       <div class="photo-card photo-5 reveal">
-        <img src="assets/photo-6.jpg" alt="Memory">
+        <img
+          src="assets/photo-6.jpg"
+          alt="Memory"
+        >
       </div>
       <div class="photo-card photo-6 reveal">
-        <img src="assets/photo-7.jpg" alt="Memory">
+        <img
+          src="assets/photo-7.jpg"
+          alt="Memory"
+        >
       </div>
       <div class="photo-card photo-7 reveal">
-        <img src="assets/photo-8.jpg" alt="Memory">
+        <img
+          src="assets/photo-8.jpg"
+          alt="Memory"
+        >
       </div>
       <div class="photo-card photo-8 reveal">
-        <img src="assets/photo-9.jpg" alt="Memory">
+        <img
+          src="assets/photo-9.jpg"
+          alt="Memory"
+        >
       </div>
       <div class="photo-card photo-9 reveal">
-        <img src="assets/photo-1.jpg" alt="Memory">
+        <img
+          src="assets/photo-1.jpg"
+          alt="Memory"
+        >
       </div>
     </div>
   </div>
@@ -716,9 +767,11 @@ p{
     </h2>
     <div style="margin-top:38px">
       <p>
-        There are people we meet, people we know,
-        and then there are people who slowly become
-        a part of our everyday thoughts.
+        There are people we meet,
+        people we know,
+        and then there are people
+        who slowly become a part
+        of our everyday thoughts.
         Somewhere along this one year,
         you became that person for me.
       </p>
@@ -737,7 +790,8 @@ p{
         If I could keep one thing from this year,
         I wouldn't choose a particular day
         or a particular photograph.
-        I'd choose the feeling of having you in my life.
+        I'd choose the feeling
+        of having you in my life.
       </p>
       <br>
       <p>
@@ -754,7 +808,10 @@ p{
   </div>
 </section>
 <!-- FINAL SECRET -->
-<section class="final" id="final">
+<section
+  class="final"
+  id="final"
+>
   <div class="wrap">
     <div class="reveal">
       <div class="eyebrow">
@@ -764,7 +821,10 @@ p{
         Archana
       </div>
     </div>
-    <div class="final-secret" id="secret">
+    <div
+      class="final-secret"
+      id="secret"
+    >
       <div class="birthday">
         Happy Birthday
       </div>
@@ -782,74 +842,192 @@ p{
   </div>
 </section>
 <script>
-/* --------------------------------
-   OPENING
--------------------------------- */
-const gate = document.getElementById("gate");
-const enter = document.getElementById("enter");
-enter.addEventListener("click", () => {
-  gate.classList.add("hide");
-  setTimeout(() => {
-    const first =
-      document.querySelector(".hero .reveal");
-    if(first){
-      first.classList.add("show");
-    }
-  },650);
-  createHearts(8);
-});
-/* --------------------------------
-   SCROLL REVEALS
--------------------------------- */
-const observer =
-new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add("show");
-        if(entry.target.closest(".final")){
-          const secret =
-            document.getElementById("secret");
-          setTimeout(() => {
-            secret.classList.add("show");
-            createHearts(35);
-          },700);
+/* ==========================================
+   SECRET OPENING + REAL BGM
+========================================== */
+const gate =
+  document.getElementById("gate");
+const enter =
+  document.getElementById("enter");
+const music =
+  document.getElementById("music");
+/*
+  Your real BGM.
+  IMPORTANT:
+  GitHub structure must be:
+  assets/
+      bgm.mp3
+*/
+const bgm =
+  new Audio("assets/bgm.mp3");
+bgm.loop = true;
+bgm.preload = "auto";
+/*
+  Change this number if you want:
+  0.20 = quiet
+  0.35 = soft
+  0.42 = cinematic
+  0.60 = louder
+*/
+bgm.volume = 0.42;
+let musicPlaying = false;
+/* Start BGM */
+async function startBGM(){
+  try{
+    await bgm.play();
+    musicPlaying = true;
+    music.textContent = "❚❚";
+    music.setAttribute(
+      "aria-label",
+      "Pause background music"
+    );
+  }catch(error){
+    console.log(
+      "BGM could not start:",
+      error
+    );
+    musicPlaying = false;
+    music.textContent = "♪";
+  }
+}
+/* Pause / Play */
+function toggleBGM(){
+  if(bgm.paused){
+    startBGM();
+  }else{
+    bgm.pause();
+    musicPlaying = false;
+    music.textContent = "♪";
+    music.setAttribute(
+      "aria-label",
+      "Play background music"
+    );
+  }
+}
+/* Music button */
+music.addEventListener(
+  "click",
+  toggleBGM
+);
+/* Begin story */
+enter.addEventListener(
+  "click",
+  () => {
+    gate.classList.add("hide");
+    setTimeout(
+      () => {
+        const first =
+          document.querySelector(
+            ".hero .reveal"
+          );
+        if(first){
+          first.classList.add(
+            "show"
+          );
         }
-      }
-    });
-  },
-  {
-    threshold:.14
+      },
+      650
+    );
+    /*
+      This starts the REAL BGM
+      because the visitor has
+      just tapped the button.
+    */
+    startBGM();
+    createHearts(8);
   }
 );
+/* ==========================================
+   SCROLL REVEALS
+========================================== */
+const observer =
+  new IntersectionObserver(
+    entries => {
+      entries.forEach(
+        entry => {
+          if(
+            entry.isIntersecting
+          ){
+            entry.target.classList.add(
+              "show"
+            );
+            /*
+              When the final section
+              appears, reveal the
+              birthday message.
+            */
+            if(
+              entry.target.closest(
+                ".final"
+              )
+            ){
+              setTimeout(
+                () => {
+                  const secret =
+                    document.getElementById(
+                      "secret"
+                    );
+                  secret.classList.add(
+                    "show"
+                  );
+                  createHearts(35);
+                },
+                700
+              );
+            }
+          }
+        }
+      );
+    },
+    {
+      threshold:.14
+    }
+  );
 document
-.querySelectorAll(".reveal")
-.forEach(element => {
-  observer.observe(element);
-});
-/* --------------------------------
+  .querySelectorAll(
+    ".reveal"
+  )
+  .forEach(
+    element => {
+      observer.observe(
+        element
+      );
+    }
+  );
+/* ==========================================
    SCROLL PROGRESS
--------------------------------- */
+========================================== */
 const progress =
-document.getElementById("progress");
-window.addEventListener("scroll",() => {
-  const total =
-    document.documentElement.scrollHeight -
-    window.innerHeight;
-  const percentage =
-    total > 0
-      ? (window.scrollY / total) * 100
-      : 0;
-  progress.style.width =
-    percentage + "%";
-});
-/* --------------------------------
+  document.getElementById(
+    "progress"
+  );
+window.addEventListener(
+  "scroll",
+  () => {
+    const total =
+      document.documentElement
+        .scrollHeight -
+      window.innerHeight;
+    const percentage =
+      total > 0
+        ? (
+            window.scrollY /
+            total
+          ) * 100
+        : 0;
+    progress.style.width =
+      percentage + "%";
+  }
+);
+/* ==========================================
    STAR FIELD
--------------------------------- */
+========================================== */
 const canvas =
-document.getElementById("stars");
+  document.getElementById(
+    "stars"
+  );
 const ctx =
-canvas.getContext("2d");
+  canvas.getContext("2d");
 let width;
 let height;
 let stars = [];
@@ -863,15 +1041,23 @@ function resizeCanvas(){
     window.innerHeight *
     window.devicePixelRatio;
   canvas.style.width =
-    window.innerWidth + "px";
+    window.innerWidth +
+    "px";
   canvas.style.height =
-    window.innerHeight + "px";
+    window.innerHeight +
+    "px";
   stars =
     Array.from(
-      {length:100},
+      {
+        length:100
+      },
       () => ({
-        x:Math.random()*width,
-        y:Math.random()*height,
+        x:
+          Math.random() *
+          width,
+        y:
+          Math.random() *
+          height,
         radius:
           Math.random() *
           1.4 *
@@ -880,7 +1066,8 @@ function resizeCanvas(){
           Math.random(),
         speed:
           .12 +
-          Math.random()*.32
+          Math.random() *
+          .32
       })
     );
 }
@@ -891,29 +1078,40 @@ function drawStars(){
     width,
     height
   );
-  stars.forEach(star => {
-    star.y -= star.speed;
-    if(star.y < 0){
-      star.y = height;
+  stars.forEach(
+    star => {
+      star.y -=
+        star.speed;
+      if(
+        star.y < 0
+      ){
+        star.y =
+          height;
+      }
+      star.alpha +=
+        .01;
+      ctx.globalAlpha =
+        .10 +
+        .10 *
+        Math.sin(
+          star.alpha
+        );
+      ctx.fillStyle =
+        "#f4d7d9";
+      ctx.beginPath();
+      ctx.arc(
+        star.x,
+        star.y,
+        star.radius,
+        0,
+        Math.PI * 2
+      );
+      ctx.fill();
     }
-    star.alpha += .01;
-    ctx.globalAlpha =
-      .10 +
-      .10 *
-      Math.sin(star.alpha);
-    ctx.fillStyle =
-      "#f4d7d9";
-    ctx.beginPath();
-    ctx.arc(
-      star.x,
-      star.y,
-      star.radius,
-      0,
-      Math.PI * 2
-    );
-    ctx.fill();
-  });
-  requestAnimationFrame(drawStars);
+  );
+  requestAnimationFrame(
+    drawStars
+  );
 }
 resizeCanvas();
 window.addEventListener(
@@ -921,13 +1119,21 @@ window.addEventListener(
   resizeCanvas
 );
 drawStars();
-/* --------------------------------
+/* ==========================================
    FLOATING HEARTS
--------------------------------- */
-function createHearts(amount){
-  for(let i=0;i<amount;i++){
+========================================== */
+function createHearts(
+  amount
+){
+  for(
+    let i = 0;
+    i < amount;
+    i++
+  ){
     const heart =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
     heart.className =
       "heart";
     heart.textContent =
@@ -935,16 +1141,27 @@ function createHearts(amount){
         ? "♥"
         : "♡";
     heart.style.left =
-      (5 + Math.random()*90) +
+      (
+        5 +
+        Math.random() * 90
+      ) +
       "vw";
     heart.style.animationDuration =
-      (4 + Math.random()*5) +
+      (
+        4 +
+        Math.random() * 5
+      ) +
       "s";
     heart.style.animationDelay =
-      (Math.random()*1.5) +
+      (
+        Math.random() * 1.5
+      ) +
       "s";
     heart.style.fontSize =
-      (10 + Math.random()*18) +
+      (
+        10 +
+        Math.random() * 18
+      ) +
       "px";
     heart.style.color =
       Math.random() > .5
@@ -953,77 +1170,29 @@ function createHearts(amount){
     document.body.appendChild(
       heart
     );
-    setTimeout(() => {
-      heart.remove();
-    },10000);
+    setTimeout(
+      () => {
+        heart.remove();
+      },
+      10000
+    );
   }
 }
-/* --------------------------------
-   SIMPLE AMBIENT SOUND
--------------------------------- */
-const music =
-document.getElementById("music");
-let audioContext = null;
-let playing = false;
-music.addEventListener(
-  "click",
-  () => {
-    if(!audioContext){
-      audioContext =
-        new (
-          window.AudioContext ||
-          window.webkitAudioContext
-        )();
-    }
-    if(playing){
-      return;
-    }
-    const oscillator =
-      audioContext.createOscillator();
-    const gain =
-      audioContext.createGain();
-    oscillator.type =
-      "sine";
-    oscillator.frequency.value =
-      220;
-    gain.gain.setValueAtTime(
-      .0001,
-      audioContext.currentTime
-    );
-    gain.gain.exponentialRampToValueAtTime(
-      .035,
-      audioContext.currentTime + .8
-    );
-    gain.gain.exponentialRampToValueAtTime(
-      .0001,
-      audioContext.currentTime + 3
-    );
-    oscillator
-      .connect(gain)
-      .connect(audioContext.destination);
-    oscillator.start();
-    oscillator.stop(
-      audioContext.currentTime + 3
-    );
-    playing = true;
-    music.textContent = "◌";
-    setTimeout(() => {
-      playing = false;
-      music.textContent = "♪";
-    },3000);
-  }
-);
-/* --------------------------------
+/* ==========================================
    CUSTOM CURSOR
--------------------------------- */
+========================================== */
 document.addEventListener(
   "mousemove",
   event => {
     let cursor =
-      document.querySelector(".cursor");
+      document.querySelector(
+        ".cursor"
+      );
     if(!cursor){
       cursor =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
       cursor.className =
         "cursor";
       document.body.appendChild(
