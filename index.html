@@ -1,140 +1,1041 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#070709">
+<meta name="description" content="A little cinematic story made especially for Archu — from Chandu.">
 <title>For Archu — A Little Piece of Us</title>
 <style>
-:root{--bg:#070709;--ink:#f8f3ef;--muted:#b8aca5;--rose:#e9a0a9;--gold:#d8b48a}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 20%,rgba(220,150,160,.10),transparent 35%),radial-gradient(circle at 20% 80%,rgba(180,120,90,.08),transparent 30%);z-index:-2}
-.noise{position:fixed;inset:0;opacity:.045;pointer-events:none;z-index:20;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E")}
-canvas{position:fixed;inset:0;pointer-events:none;z-index:0}
-section{position:relative;min-height:100svh;display:grid;place-items:center;padding:72px 22px;overflow:hidden}
-.wrap{width:min(1040px,100%);margin:auto}.eyebrow{font-family:Arial,sans-serif;letter-spacing:.32em;text-transform:uppercase;font-size:11px;color:var(--gold)}
-h1,h2,p{margin:0}h1{font-size:clamp(58px,14vw,150px);line-height:.88;font-weight:400;letter-spacing:-.05em}
-h2{font-size:clamp(38px,7vw,78px);font-weight:400;line-height:.95;letter-spacing:-.04em}
-p{font-family:Arial,sans-serif;line-height:1.75;color:var(--muted);font-size:15px}
-.reveal{opacity:0;transform:translateY(28px);transition:1.1s cubic-bezier(.2,.8,.2,1)}.reveal.show{opacity:1;transform:none}
-#gate{position:fixed;inset:0;background:#070709;z-index:50;display:grid;place-items:center;text-align:center;padding:30px;transition:1s ease}
-#gate.hide{opacity:0;pointer-events:none}.gate-inner{max-width:600px}.gate-title{margin:24px 0;font-size:clamp(34px,8vw,72px);font-weight:400}.gate-sub{margin:0 auto 34px;max-width:420px}
-button{border:1px solid rgba(233,160,169,.5);background:rgba(255,255,255,.03);color:#fff;padding:15px 24px;border-radius:999px;cursor:pointer;font:12px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;transition:.3s}
-button:hover{background:rgba(233,160,169,.12);transform:translateY(-2px)}
-.scroll{position:absolute;bottom:30px;font:10px Arial,sans-serif;letter-spacing:.3em;color:#8c817c;text-transform:uppercase}
-.hero{text-align:center}.hero .date{margin-top:30px;color:var(--gold);font:12px Arial,sans-serif;letter-spacing:.45em}.hero .line{width:1px;height:70px;background:linear-gradient(var(--rose),transparent);margin:28px auto}
-.story{grid-template-columns:1fr 1fr;gap:7vw}.story .copy{align-self:center}.story img{width:100%;height:75svh;object-fit:cover;filter:saturate(.8) contrast(1.03);box-shadow:0 30px 80px rgba(0,0,0,.45)}
-@media(max-width:760px){.story{grid-template-columns:1fr}.story img{height:62svh}.story .copy{order:-1}}
-.quote{text-align:center}.quote p{max-width:650px;margin:28px auto 0;font-size:17px}.quote .mark{font-size:80px;color:var(--rose);line-height:.5}
-.gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:45px}.card{overflow:hidden;background:#111}.card img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.8);transition:1s}.card:hover img{transform:scale(1.04);filter:saturate(1)}
-.c1{grid-column:span 7;height:560px}.c2{grid-column:span 5;height:560px}.c3{grid-column:span 5;height:460px}.c4{grid-column:span 7;height:460px}.c5,.c6,.c7{grid-column:span 4;height:360px}.c8{grid-column:span 6;height:470px}.c9{grid-column:span 6;height:470px}
-@media(max-width:760px){.gallery{grid-template-columns:1fr 1fr}.card{grid-column:span 1!important;height:270px}.c1,.c4,.c8,.c9{grid-column:span 2!important;height:430px}}
-.loves{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}.love{border:1px solid rgba(255,255,255,.09);padding:34px 28px;min-height:250px;background:linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.01));}.num{font:11px Arial,sans-serif;color:var(--gold);letter-spacing:.2em}.love h3{font-size:27px;font-weight:400;margin:45px 0 12px}.love p{font-size:14px}
-@media(max-width:760px){.loves{grid-template-columns:1fr}}
-.letter{max-width:760px;margin:auto}.letter p{font-size:16px;color:#c9beb8}.signature{margin-top:36px;font-size:34px;color:var(--rose);font-style:italic}
-.final{background:radial-gradient(circle at 50% 45%,rgba(233,160,169,.12),transparent 34%);text-align:center}.final .birthday{font-size:clamp(52px,12vw,125px);color:#f6d5d8;margin:25px 0}.final .name{font-size:clamp(28px,5vw,54px);letter-spacing:.15em;text-transform:uppercase}.final .tiny{margin-top:25px}
-.music{position:fixed;right:18px;top:18px;z-index:30;width:44px;height:44px;padding:0;font-size:14px;border-color:rgba(255,255,255,.15)}
-.cursor{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--rose);pointer-events:none;z-index:40;mix-blend-mode:screen;opacity:.8}
-@media(max-width:700px){.cursor{display:none}}
+:root{
+  --bg:#070709;
+  --bg2:#0e0b0d;
+  --ink:#f8f3ef;
+  --muted:#b8aca5;
+  --rose:#e9a0a9;
+  --rose2:#f5c6cb;
+  --gold:#d8b48a;
+  --line:rgba(255,255,255,.10);
+}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+html{
+  scroll-behavior:smooth;
+}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif;
+  overflow-x:hidden;
+}
+/* ---------- BACKGROUND ---------- */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-5;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 15%,rgba(233,160,169,.13),transparent 35%),
+    radial-gradient(circle at 10% 80%,rgba(216,180,138,.07),transparent 30%),
+    radial-gradient(circle at 90% 60%,rgba(160,100,120,.06),transparent 30%);
+}
+.noise{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  pointer-events:none;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#stars{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:-3;
+  pointer-events:none;
+}
+/* ---------- PROGRESS ---------- */
+.progress{
+  position:fixed;
+  top:0;
+  left:0;
+  height:2px;
+  width:0%;
+  background:var(--rose);
+  z-index:90;
+  box-shadow:0 0 15px rgba(233,160,169,.8);
+}
+/* ---------- GENERAL ---------- */
+section{
+  position:relative;
+  min-height:100svh;
+  display:grid;
+  place-items:center;
+  padding:90px 22px;
+  overflow:hidden;
+}
+.wrap{
+  width:min(1050px,100%);
+  margin:auto;
+}
+.eyebrow{
+  font-family:Arial,sans-serif;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  font-size:10px;
+  color:var(--gold);
+}
+h1,h2,h3,p{
+  margin:0;
+}
+h1{
+  font-size:clamp(65px,15vw,155px);
+  line-height:.85;
+  font-weight:400;
+  letter-spacing:-.06em;
+}
+h2{
+  font-size:clamp(40px,7vw,82px);
+  line-height:.94;
+  font-weight:400;
+  letter-spacing:-.045em;
+}
+p{
+  font-family:Arial,sans-serif;
+  font-size:15px;
+  line-height:1.85;
+  color:var(--muted);
+}
+.reveal{
+  opacity:0;
+  transform:translateY(35px);
+  transition:
+    opacity 1.1s ease,
+    transform 1.1s cubic-bezier(.2,.8,.2,1);
+}
+.reveal.show{
+  opacity:1;
+  transform:none;
+}
+/* ---------- SECRET OPENING ---------- */
+#gate{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at center,rgba(233,160,169,.08),transparent 35%),
+    #070709;
+  z-index:200;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:30px;
+  transition:opacity 1.4s ease;
+}
+#gate.hide{
+  opacity:0;
+  pointer-events:none;
+}
+.gate-inner{
+  max-width:650px;
+}
+.gate-small{
+  margin-bottom:22px;
+}
+.gate-title{
+  font-size:clamp(38px,8vw,78px);
+  line-height:.98;
+  font-weight:400;
+}
+.gate-title em{
+  color:var(--rose);
+}
+.gate-sub{
+  max-width:450px;
+  margin:30px auto 36px;
+}
+.enter-btn{
+  border:1px solid rgba(233,160,169,.55);
+  background:rgba(255,255,255,.025);
+  color:#fff;
+  padding:16px 28px;
+  border-radius:999px;
+  font-family:Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:.35s ease;
+}
+.enter-btn:hover{
+  background:rgba(233,160,169,.12);
+  transform:translateY(-3px);
+  box-shadow:0 15px 45px rgba(233,160,169,.12);
+}
+/* ---------- MUSIC ---------- */
+.music{
+  position:fixed;
+  right:18px;
+  top:18px;
+  width:45px;
+  height:45px;
+  z-index:80;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(7,7,9,.65);
+  backdrop-filter:blur(10px);
+  color:#fff;
+  cursor:pointer;
+  font-size:15px;
+}
+/* ---------- HERO ---------- */
+.hero{
+  text-align:center;
+}
+.hero h1{
+  margin-top:20px;
+  animation:softGlow 4s ease-in-out infinite alternate;
+}
+@keyframes softGlow{
+  from{
+    text-shadow:0 0 0 rgba(233,160,169,0);
+  }
+  to{
+    text-shadow:0 0 50px rgba(233,160,169,.20);
+  }
+}
+.hero-date{
+  margin-top:30px;
+  color:var(--gold);
+  font-family:Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:.45em;
+}
+.hero-line{
+  width:1px;
+  height:75px;
+  margin:30px auto;
+  background:linear-gradient(var(--rose),transparent);
+}
+.scroll-hint{
+  position:absolute;
+  bottom:28px;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:Arial,sans-serif;
+  font-size:9px;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:#7f7470;
+  animation:breathe 2.2s infinite;
+}
+@keyframes breathe{
+  50%{
+    opacity:.3;
+    transform:translateX(-50%) translateY(6px);
+  }
+}
+/* ---------- STORY ---------- */
+.story{
+  grid-template-columns:1fr 1fr;
+  gap:7vw;
+}
+.story-copy{
+  align-self:center;
+}
+.story-photo{
+  width:100%;
+  height:75svh;
+  object-fit:cover;
+  filter:saturate(.78) contrast(1.04);
+  box-shadow:0 30px 90px rgba(0,0,0,.55);
+  transition:1.2s ease;
+}
+.story-photo:hover{
+  transform:scale(1.025);
+  filter:saturate(1);
+}
+@media(max-width:760px){
+  .story{
+    grid-template-columns:1fr;
+  }
+  .story-copy{
+    order:-1;
+  }
+  .story-photo{
+    height:62svh;
+  }
+}
+/* ---------- QUOTE ---------- */
+.quote{
+  text-align:center;
+  background:
+    radial-gradient(circle at center,rgba(233,160,169,.055),transparent 35%);
+}
+.quote-mark{
+  font-size:100px;
+  line-height:.45;
+  color:var(--rose);
+}
+.quote p{
+  max-width:650px;
+  margin:30px auto 0;
+  font-size:17px;
+}
+/* ---------- THREE THINGS ---------- */
+.loves{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:50px;
+}
+.love{
+  min-height:270px;
+  padding:35px 28px;
+  border:1px solid var(--line);
+  background:linear-gradient(
+    145deg,
+    rgba(255,255,255,.045),
+    rgba(255,255,255,.008)
+  );
+  transition:.5s ease;
+}
+.love:hover{
+  transform:translateY(-8px);
+  border-color:rgba(233,160,169,.35);
+  box-shadow:0 25px 70px rgba(0,0,0,.25);
+}
+.love-number{
+  font-family:Arial,sans-serif;
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:.2em;
+}
+.love h3{
+  font-size:28px;
+  font-weight:400;
+  margin:55px 0 15px;
+}
+.love p{
+  font-size:14px;
+}
+@media(max-width:760px){
+  .loves{
+    grid-template-columns:1fr;
+  }
+}
+/* ---------- GALLERY ---------- */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:14px;
+  margin-top:50px;
+}
+.photo-card{
+  overflow:hidden;
+  position:relative;
+  background:#111;
+}
+.photo-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(
+    180deg,
+    transparent 55%,
+    rgba(0,0,0,.35)
+  );
+}
+.photo-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:saturate(.78) contrast(1.02);
+  transition:1.3s cubic-bezier(.2,.8,.2,1);
+}
+.photo-card:hover img{
+  transform:scale(1.07);
+  filter:saturate(1);
+}
+.photo-1{grid-column:span 7;height:560px}
+.photo-2{grid-column:span 5;height:560px}
+.photo-3{grid-column:span 5;height:460px}
+.photo-4{grid-column:span 7;height:460px}
+.photo-5,.photo-6,.photo-7{
+  grid-column:span 4;
+  height:360px;
+}
+.photo-8,.photo-9{
+  grid-column:span 6;
+  height:470px;
+}
+@media(max-width:760px){
+  .gallery{
+    grid-template-columns:1fr 1fr;
+  }
+  .photo-card{
+    grid-column:span 1!important;
+    height:270px;
+  }
+  .photo-1,
+  .photo-4,
+  .photo-8,
+  .photo-9{
+    grid-column:span 2!important;
+    height:430px;
+  }
+}
+/* ---------- LETTER ---------- */
+.letter{
+  max-width:760px;
+  margin:auto;
+}
+.letter p{
+  font-size:16px;
+  color:#c9beb8;
+}
+.signature{
+  margin-top:38px;
+  font-size:35px;
+  color:var(--rose);
+  font-style:italic;
+}
+/* ---------- FINAL REVEAL ---------- */
+.final{
+  min-height:110svh;
+  text-align:center;
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(233,160,169,.14),
+      transparent 38%
+    );
+}
+.final-name{
+  margin-top:25px;
+  font-size:clamp(30px,5vw,58px);
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.final-secret{
+  opacity:0;
+  transform:scale(.88);
+  transition:
+    opacity 1.8s ease,
+    transform 1.8s cubic-bezier(.2,.8,.2,1);
+}
+.final-secret.show{
+  opacity:1;
+  transform:scale(1);
+}
+.birthday{
+  margin:30px 0;
+  font-size:clamp(55px,12vw,130px);
+  line-height:.85;
+  color:var(--rose2);
+  text-shadow:0 0 50px rgba(233,160,169,.18);
+}
+.final-message{
+  max-width:570px;
+  margin:auto;
+  font-size:17px;
+}
+.final-date{
+  margin-top:28px;
+  font-family:Arial,sans-serif;
+  font-size:10px;
+  letter-spacing:.3em;
+  color:#847974;
+}
+/* ---------- FLOATING HEARTS ---------- */
+.heart{
+  position:fixed;
+  bottom:-30px;
+  z-index:150;
+  pointer-events:none;
+  font-size:15px;
+  animation:floatHeart linear forwards;
+}
+@keyframes floatHeart{
+  0%{
+    transform:translateY(0) scale(.6) rotate(0);
+    opacity:0;
+  }
+  10%{
+    opacity:.8;
+  }
+  100%{
+    transform:translateY(-110vh) scale(1.5) rotate(30deg);
+    opacity:0;
+  }
+}
+/* ---------- SIDE NOTE ---------- */
+.side-note{
+  position:fixed;
+  left:18px;
+  bottom:18px;
+  z-index:70;
+  font-family:Arial,sans-serif;
+  font-size:9px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#706764;
+}
+@media(max-width:700px){
+  .side-note{
+    display:none;
+  }
+}
+/* ---------- CUSTOM CURSOR ---------- */
+.cursor{
+  position:fixed;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--rose);
+  pointer-events:none;
+  z-index:120;
+  mix-blend-mode:screen;
+  opacity:.8;
+}
+@media(max-width:700px){
+  .cursor{
+    display:none;
+  }
+}
 </style>
 </head>
 <body>
-<div class="noise"></div><canvas id="stars"></canvas>
-<div id="gate"><div class="gate-inner">
-<div class="eyebrow">A small secret from Chandu</div>
-<div class="gate-title">This isn't a birthday wish…<br><em>yet.</em></div>
-<p class="gate-sub">Take a little walk through a year of memories. The last page is the only one that tells you why you're here.</p>
-<button id="enter">Begin the story</button>
-</div></div>
-
-<button class="music" id="music" aria-label="Ambient sound">♪</button>
-
+<div class="noise"></div>
+<canvas id="stars"></canvas>
+<div class="progress" id="progress"></div>
+<div class="side-note">
+  A story made for Archu · Chandu
+</div>
+<!-- SECRET OPENING -->
+<div id="gate">
+  <div class="gate-inner">
+    <div class="eyebrow gate-small">
+      A small secret from Chandu
+    </div>
+    <div class="gate-title">
+      This isn't a birthday wish…<br>
+      <em>yet.</em>
+    </div>
+    <p class="gate-sub">
+      Take a little walk through a year of memories.
+      Don't rush the last page.
+    </p>
+    <button class="enter-btn" id="enter">
+      Begin the story
+    </button>
+  </div>
+</div>
+<!-- MUSIC -->
+<button class="music" id="music" aria-label="Ambient sound">
+  ♪
+</button>
+<!-- HERO -->
 <section class="hero">
-<div class="wrap reveal"><div class="eyebrow">For someone who became special</div>
-<h1>Archu</h1><div class="date">03 · 10</div><div class="line"></div>
-<p style="max-width:430px;margin:auto">Some people arrive in your life quietly…<br>and somehow become one of the most beautiful parts of it.</p></div>
-<div class="scroll">scroll slowly ↓</div>
+  <div class="wrap reveal">
+    <div class="eyebrow">
+      For someone who became special
+    </div>
+    <h1>
+      Archu
+    </h1>
+    <div class="hero-date">
+      03 · 10
+    </div>
+    <div class="hero-line"></div>
+    <p style="max-width:430px;margin:auto">
+      Some people arrive in your life quietly…
+      <br>
+      and somehow become one of the most beautiful parts of it.
+    </p>
+  </div>
+  <div class="scroll-hint">
+    scroll slowly ↓
+  </div>
 </section>
-
+<!-- ONE YEAR -->
 <section class="story">
-<div class="copy reveal"><div class="eyebrow">One year</div><h2>One year.<br>So many little moments.</h2>
-<p style="margin-top:28px">A year can be measured in days, months and dates. But the good ones are measured differently — in conversations that lasted too long, laughs that came out of nowhere, and ordinary days that became memorable simply because you were there.</p></div>
-<div class="reveal"><img src="assets/photo-1.jpg" alt="A memory of Archu"></div>
+  <div class="story-copy reveal">
+    <div class="eyebrow">
+      One year
+    </div>
+    <h2>
+      One year.<br>
+      So many little moments.
+    </h2>
+    <p style="margin-top:30px">
+      A year can be measured in days, months and dates.
+      But the good ones are measured differently —
+      in conversations that lasted too long,
+      laughs that came out of nowhere,
+      and ordinary days that became memorable
+      simply because you were there.
+    </p>
+  </div>
+  <div class="reveal">
+    <img
+      class="story-photo"
+      src="assets/photo-1.jpg"
+      alt="A memory of Archu"
+    >
+  </div>
 </section>
-
+<!-- QUOTE -->
 <section class="quote">
-<div class="wrap reveal"><div class="mark">“</div><h2>Some people make<br>life feel a little warmer.</h2>
-<p>And somehow, you became one of those people for me.</p></div>
+  <div class="wrap reveal">
+    <div class="quote-mark">
+      “
+    </div>
+    <h2>
+      Some people make<br>
+      life feel a little warmer.
+    </h2>
+    <p>
+      And somehow, you became one of those people for me.
+    </p>
+  </div>
 </section>
-
+<!-- THREE THINGS -->
 <section>
-<div class="wrap">
-<div class="reveal"><div class="eyebrow">The little things</div><h2>Three things I love<br>about you.</h2></div>
-<div class="loves">
-<div class="love reveal"><div class="num">01</div><h3>Your presence</h3><p>You have this quiet way of making even an ordinary moment feel like something worth remembering.</p></div>
-<div class="love reveal"><div class="num">02</div><h3>Your heart</h3><p>The warmth, kindness and softness you carry — even when you don't realize how much it means to the people around you.</p></div>
-<div class="love reveal"><div class="num">03</div><h3>Your smile</h3><p>Maybe you don't notice it, but you have a way of making people smile just by being yourself.</p></div>
-</div>
-</div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">
+        The little things
+      </div>
+      <h2>
+        Three things I love<br>
+        about you.
+      </h2>
+    </div>
+    <div class="loves">
+      <div class="love reveal">
+        <div class="love-number">
+          01
+        </div>
+        <h3>
+          Your presence
+        </h3>
+        <p>
+          You have this quiet way of making
+          even an ordinary moment feel like
+          something worth remembering.
+        </p>
+      </div>
+      <div class="love reveal">
+        <div class="love-number">
+          02
+        </div>
+        <h3>
+          Your heart
+        </h3>
+        <p>
+          The warmth, kindness and softness
+          you carry — even when you don't
+          realize how much it means to the
+          people around you.
+        </p>
+      </div>
+      <div class="love reveal">
+        <div class="love-number">
+          03
+        </div>
+        <h3>
+          Your smile
+        </h3>
+        <p>
+          Maybe you don't notice it,
+          but you have a way of making
+          people smile just by being yourself.
+        </p>
+      </div>
+    </div>
+  </div>
 </section>
-
+<!-- PHOTO STORY -->
 <section>
-<div class="wrap">
-<div class="reveal"><div class="eyebrow">A few frames from the story</div><h2>Moments I want<br>to keep.</h2></div>
-<div class="gallery">
-<div class="card c1 reveal"><img src="assets/photo-2.jpg" alt=""></div>
-<div class="card c2 reveal"><img src="assets/photo-3.jpg" alt=""></div>
-<div class="card c3 reveal"><img src="assets/photo-4.jpg" alt=""></div>
-<div class="card c4 reveal"><img src="assets/photo-5.jpg" alt=""></div>
-<div class="card c5 reveal"><img src="assets/photo-6.jpg" alt=""></div>
-<div class="card c6 reveal"><img src="assets/photo-7.jpg" alt=""></div>
-<div class="card c7 reveal"><img src="assets/photo-8.jpg" alt=""></div>
-<div class="card c8 reveal"><img src="assets/photo-9.jpg" alt=""></div>
-<div class="card c9 reveal"><img src="assets/photo-1.jpg" alt=""></div>
-</div>
-</div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">
+        A few frames from the story
+      </div>
+      <h2>
+        Moments I want<br>
+        to keep.
+      </h2>
+    </div>
+    <div class="gallery">
+      <div class="photo-card photo-1 reveal">
+        <img src="assets/photo-2.jpg" alt="Memory">
+      </div>
+      <div class="photo-card photo-2 reveal">
+        <img src="assets/photo-3.jpg" alt="Memory">
+      </div>
+      <div class="photo-card photo-3 reveal">
+        <img src="assets/photo-4.jpg" alt="Memory">
+      </div>
+      <div class="photo-card photo-4 reveal">
+        <img src="assets/photo-5.jpg" alt="Memory">
+      </div>
+      <div class="photo-card photo-5 reveal">
+        <img src="assets/photo-6.jpg" alt="Memory">
+      </div>
+      <div class="photo-card photo-6 reveal">
+        <img src="assets/photo-7.jpg" alt="Memory">
+      </div>
+      <div class="photo-card photo-7 reveal">
+        <img src="assets/photo-8.jpg" alt="Memory">
+      </div>
+      <div class="photo-card photo-8 reveal">
+        <img src="assets/photo-9.jpg" alt="Memory">
+      </div>
+      <div class="photo-card photo-9 reveal">
+        <img src="assets/photo-1.jpg" alt="Memory">
+      </div>
+    </div>
+  </div>
 </section>
-
+<!-- PERSONAL LETTER -->
 <section>
-<div class="letter reveal">
-<div class="eyebrow">From Chandu</div>
-<h2 style="margin-top:20px">For you, Archu.</h2>
-<div style="margin-top:36px">
-<p>There are people we meet, people we know, and then there are people who slowly become a part of our everyday thoughts. Somewhere along this one year, you became that person for me.</p>
-<br>
-<p>I don't know if I've ever said it perfectly, but I hope you know how much your presence means to me. Thank you for the conversations, the laughs, the little moments, and even the completely random things that somehow became memories.</p>
-<br>
-<p>If I could keep one thing from this year, I wouldn't choose a particular day or a particular photograph. I'd choose the feeling of having you in my life.</p>
-<br>
-<p>And whatever the next chapters bring, I hope there will always be a little space for more memories, more laughter, and more moments that make us say, “Remember that day?”</p>
-</div>
-<div class="signature">— Chandu ❤️</div>
-</div>
+  <div class="letter reveal">
+    <div class="eyebrow">
+      From Chandu
+    </div>
+    <h2 style="margin-top:20px">
+      For you, Archu.
+    </h2>
+    <div style="margin-top:38px">
+      <p>
+        There are people we meet, people we know,
+        and then there are people who slowly become
+        a part of our everyday thoughts.
+        Somewhere along this one year,
+        you became that person for me.
+      </p>
+      <br>
+      <p>
+        I don't know if I've ever said it perfectly,
+        but I hope you know how much your presence
+        means to me.
+        Thank you for the conversations,
+        the laughs, the little moments,
+        and even the completely random things
+        that somehow became memories.
+      </p>
+      <br>
+      <p>
+        If I could keep one thing from this year,
+        I wouldn't choose a particular day
+        or a particular photograph.
+        I'd choose the feeling of having you in my life.
+      </p>
+      <br>
+      <p>
+        And whatever the next chapters bring,
+        I hope there will always be a little space
+        for more memories, more laughter,
+        and more moments that make us say,
+        “Remember that day?”
+      </p>
+    </div>
+    <div class="signature">
+      — Chandu ❤️
+    </div>
+  </div>
 </section>
-
+<!-- FINAL SECRET -->
 <section class="final" id="final">
-<div class="wrap reveal">
-<div class="eyebrow">And now… the secret</div>
-<div class="name">Archana</div>
-<div class="birthday">Happy Birthday</div>
-<p style="max-width:560px;margin:auto;font-size:17px">May this year be gentle with your heart, generous with your dreams, and full of reasons to smile. And I hope I get to be around for a few of those reasons. ❤️</p>
-<div class="tiny">03 · 10 · With love, Chandu</div>
-</div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">
+        And now… the secret
+      </div>
+      <div class="final-name">
+        Archana
+      </div>
+    </div>
+    <div class="final-secret" id="secret">
+      <div class="birthday">
+        Happy Birthday
+      </div>
+      <p class="final-message">
+        May this year be gentle with your heart,
+        generous with your dreams,
+        and full of reasons to smile.
+        And I hope I get to be around
+        for a few of those reasons. ❤️
+      </p>
+      <div class="final-date">
+        03 · 10 · WITH LOVE, CHANDU
+      </div>
+    </div>
+  </div>
 </section>
-
 <script>
-const gate=document.getElementById('gate');
-document.getElementById('enter').onclick=()=>{gate.classList.add('hide');window.scrollTo({top:0,behavior:'smooth'});setTimeout(()=>document.querySelector('.hero .reveal').classList.add('show'),650)}
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(x=>obs.observe(x));
-
-const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');let W,H,pts=[];
-function resize(){W=canvas.width=innerWidth*devicePixelRatio;H=canvas.height=innerHeight*devicePixelRatio;canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';pts=Array.from({length:90},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5*devicePixelRatio,a:Math.random(),s:.15+Math.random()*.35}))}
-function draw(){ctx.clearRect(0,0,W,H);for(const p of pts){p.y-=p.s;if(p.y<0)p.y=H;p.a+=.01;ctx.globalAlpha=.12+.1*Math.sin(p.a);ctx.fillStyle='#f4d7d9';ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill()}requestAnimationFrame(draw)}resize();addEventListener('resize',resize);draw();
-
-const music=document.getElementById('music');let audio=null,playing=false;
-music.onclick=()=>{if(!audio) audio=new (window.AudioContext||window.webkitAudioContext)(); if(!playing){let o=audio.createOscillator(),g=audio.createGain();o.type='sine';o.frequency.value=220;g.gain.setValueAtTime(.0001,audio.currentTime);g.gain.exponentialRampToValueAtTime(.035,audio.currentTime+.8);g.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+3);o.connect(g).connect(audio.destination);o.start();o.stop(audio.currentTime+3);playing=true;music.textContent='◌';setTimeout(()=>playing=false,3000)}};
-
-document.addEventListener('mousemove',e=>{let c=document.querySelector('.cursor');if(!c){c=document.createElement('div');c.className='cursor';document.body.appendChild(c)}c.style.left=e.clientX+'px';c.style.top=e.clientY+'px'});
+/* --------------------------------
+   OPENING
+-------------------------------- */
+const gate = document.getElementById("gate");
+const enter = document.getElementById("enter");
+enter.addEventListener("click", () => {
+  gate.classList.add("hide");
+  setTimeout(() => {
+    const first =
+      document.querySelector(".hero .reveal");
+    if(first){
+      first.classList.add("show");
+    }
+  },650);
+  createHearts(8);
+});
+/* --------------------------------
+   SCROLL REVEALS
+-------------------------------- */
+const observer =
+new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("show");
+        if(entry.target.closest(".final")){
+          const secret =
+            document.getElementById("secret");
+          setTimeout(() => {
+            secret.classList.add("show");
+            createHearts(35);
+          },700);
+        }
+      }
+    });
+  },
+  {
+    threshold:.14
+  }
+);
+document
+.querySelectorAll(".reveal")
+.forEach(element => {
+  observer.observe(element);
+});
+/* --------------------------------
+   SCROLL PROGRESS
+-------------------------------- */
+const progress =
+document.getElementById("progress");
+window.addEventListener("scroll",() => {
+  const total =
+    document.documentElement.scrollHeight -
+    window.innerHeight;
+  const percentage =
+    total > 0
+      ? (window.scrollY / total) * 100
+      : 0;
+  progress.style.width =
+    percentage + "%";
+});
+/* --------------------------------
+   STAR FIELD
+-------------------------------- */
+const canvas =
+document.getElementById("stars");
+const ctx =
+canvas.getContext("2d");
+let width;
+let height;
+let stars = [];
+function resizeCanvas(){
+  width =
+    canvas.width =
+    window.innerWidth *
+    window.devicePixelRatio;
+  height =
+    canvas.height =
+    window.innerHeight *
+    window.devicePixelRatio;
+  canvas.style.width =
+    window.innerWidth + "px";
+  canvas.style.height =
+    window.innerHeight + "px";
+  stars =
+    Array.from(
+      {length:100},
+      () => ({
+        x:Math.random()*width,
+        y:Math.random()*height,
+        radius:
+          Math.random() *
+          1.4 *
+          window.devicePixelRatio,
+        alpha:
+          Math.random(),
+        speed:
+          .12 +
+          Math.random()*.32
+      })
+    );
+}
+function drawStars(){
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+  stars.forEach(star => {
+    star.y -= star.speed;
+    if(star.y < 0){
+      star.y = height;
+    }
+    star.alpha += .01;
+    ctx.globalAlpha =
+      .10 +
+      .10 *
+      Math.sin(star.alpha);
+    ctx.fillStyle =
+      "#f4d7d9";
+    ctx.beginPath();
+    ctx.arc(
+      star.x,
+      star.y,
+      star.radius,
+      0,
+      Math.PI * 2
+    );
+    ctx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+resizeCanvas();
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+drawStars();
+/* --------------------------------
+   FLOATING HEARTS
+-------------------------------- */
+function createHearts(amount){
+  for(let i=0;i<amount;i++){
+    const heart =
+      document.createElement("div");
+    heart.className =
+      "heart";
+    heart.textContent =
+      Math.random() > .35
+        ? "♥"
+        : "♡";
+    heart.style.left =
+      (5 + Math.random()*90) +
+      "vw";
+    heart.style.animationDuration =
+      (4 + Math.random()*5) +
+      "s";
+    heart.style.animationDelay =
+      (Math.random()*1.5) +
+      "s";
+    heart.style.fontSize =
+      (10 + Math.random()*18) +
+      "px";
+    heart.style.color =
+      Math.random() > .5
+        ? "#e9a0a9"
+        : "#d8b48a";
+    document.body.appendChild(
+      heart
+    );
+    setTimeout(() => {
+      heart.remove();
+    },10000);
+  }
+}
+/* --------------------------------
+   SIMPLE AMBIENT SOUND
+-------------------------------- */
+const music =
+document.getElementById("music");
+let audioContext = null;
+let playing = false;
+music.addEventListener(
+  "click",
+  () => {
+    if(!audioContext){
+      audioContext =
+        new (
+          window.AudioContext ||
+          window.webkitAudioContext
+        )();
+    }
+    if(playing){
+      return;
+    }
+    const oscillator =
+      audioContext.createOscillator();
+    const gain =
+      audioContext.createGain();
+    oscillator.type =
+      "sine";
+    oscillator.frequency.value =
+      220;
+    gain.gain.setValueAtTime(
+      .0001,
+      audioContext.currentTime
+    );
+    gain.gain.exponentialRampToValueAtTime(
+      .035,
+      audioContext.currentTime + .8
+    );
+    gain.gain.exponentialRampToValueAtTime(
+      .0001,
+      audioContext.currentTime + 3
+    );
+    oscillator
+      .connect(gain)
+      .connect(audioContext.destination);
+    oscillator.start();
+    oscillator.stop(
+      audioContext.currentTime + 3
+    );
+    playing = true;
+    music.textContent = "◌";
+    setTimeout(() => {
+      playing = false;
+      music.textContent = "♪";
+    },3000);
+  }
+);
+/* --------------------------------
+   CUSTOM CURSOR
+-------------------------------- */
+document.addEventListener(
+  "mousemove",
+  event => {
+    let cursor =
+      document.querySelector(".cursor");
+    if(!cursor){
+      cursor =
+        document.createElement("div");
+      cursor.className =
+        "cursor";
+      document.body.appendChild(
+        cursor
+      );
+    }
+    cursor.style.left =
+      event.clientX + "px";
+    cursor.style.top =
+      event.clientY + "px";
+  }
+);
 </script>
-</body></html>
+</body>
+</html>
